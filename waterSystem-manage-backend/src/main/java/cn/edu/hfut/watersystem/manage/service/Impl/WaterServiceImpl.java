@@ -33,4 +33,9 @@ public class WaterServiceImpl implements WaterService {
     public void addWater(Water water) {
         waterMapper.insertWater(water);
     }
+
+    @Override
+    public void updateStockByWaterId(Integer waterID, Integer number) {
+        waterMapper.updateWater(waterID, number);
+    }
 }

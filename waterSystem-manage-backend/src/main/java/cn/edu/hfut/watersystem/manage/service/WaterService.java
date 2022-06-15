@@ -16,4 +16,6 @@ public interface WaterService {
     void deleteWater(int waterID);
 
     void addWater(Water water);
+
+    void updateStockByWaterId(Integer waterID, Integer number);
 }

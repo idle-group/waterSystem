@@ -26,4 +26,8 @@ public interface WaterMapper {
     @Insert("CALL insertWater(#{name}, #{size}, #{cost}, #{price})")
     @Options(statementType= StatementType.CALLABLE)
     void insertWater(Water water);
+
+    @Update("CALL updateWater(#{waterID}, #{number})")
+    @Options(statementType= StatementType.CALLABLE)
+    void updateWater(Integer waterID, Integer number);
 }

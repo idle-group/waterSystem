@@ -28,4 +28,8 @@ public interface OrderDetailMapper {
     @Select("CALL insertDelivery(#{orderDetailID}, #{staffID}, #{time})")
     @Options(statementType= StatementType.CALLABLE)
     List<OrderDetail> deliverOrder(int orderDetailID, int staffID, String time);
+
+    @Select("CALL selectOrderDetailById(#{orderDetailID})")
+    @Options(statementType= StatementType.CALLABLE)
+    OrderDetail selectOrderDetailById(Integer orderDetailId);
 }

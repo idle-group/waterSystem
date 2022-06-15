@@ -1,6 +1,7 @@
 package cn.edu.hfut.watersystem.manage.service.Impl;
 
 import cn.edu.hfut.watersystem.manage.bean.GetOrderDetailListRes;
+import cn.edu.hfut.watersystem.manage.entity.OrderDetail;
 import cn.edu.hfut.watersystem.manage.mapper.OrderDetailMapper;
 import cn.edu.hfut.watersystem.manage.util.TimeUtil;
 import cn.edu.hfut.watersystem.manage.service.OrderDetailService;
@@ -32,6 +33,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public void deliverOrder(int orderDetailID, int staffID) {
         orderDetailMapper.deliverOrder(orderDetailID, staffID, TimeUtil.getFormatTime());
+    }
+
+    @Override
+    public OrderDetail getOrderDetail(Integer orderDetailId) {
+        return orderDetailMapper.selectOrderDetailById(orderDetailId);
     }
 
 

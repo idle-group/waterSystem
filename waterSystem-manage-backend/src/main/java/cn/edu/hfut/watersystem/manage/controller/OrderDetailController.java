@@ -2,6 +2,8 @@ package cn.edu.hfut.watersystem.manage.controller;
 
 import cn.edu.hfut.watersystem.manage.bean.*;
 import cn.edu.hfut.watersystem.manage.entity.Message;
+import cn.edu.hfut.watersystem.manage.entity.OrderDetail;
+import cn.edu.hfut.watersystem.manage.service.WaterService;
 import cn.edu.hfut.watersystem.manage.util.ResultUtil;
 import cn.edu.hfut.watersystem.manage.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class OrderDetailController {
 
     @Autowired
     OrderDetailService orderDetailService;
+    @Autowired
+    WaterService waterService;
 
     @PostMapping("/getAll")
     public Message getOrderDetailListByState(@RequestBody GetOrderDetailListReq getOrderDetailListReq) {
@@ -36,7 +40,10 @@ public class OrderDetailController {
     @PostMapping("/delete")
     public Message cancelOrder(@Valid @RequestBody CancelOrderReq cancelOrderReq) {
         Integer orderDetailID = cancelOrderReq.getOrderDetailID();
-
+        // 1.加水
+        OrderDetail orderDetail = orderDetailService.getOrderDetail(orderDetailID);
+        waterService.updateStockByWaterId(orderDetail.getWaterID(), orderDetail.getNumber());
+        // 2.关闭订单
         orderDetailService.cancelOrder(orderDetailID);
         CancelOrderRes cancelOrderRes = new CancelOrderRes();
         cancelOrderRes.setCancelSuccess(true);

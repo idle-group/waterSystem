@@ -1,6 +1,7 @@
 package cn.edu.hfut.watersystem.manage.service;
 
 import cn.edu.hfut.watersystem.manage.bean.GetOrderDetailListRes;
+import cn.edu.hfut.watersystem.manage.entity.OrderDetail;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface OrderDetailService {
     void cancelOrder(int orderDetailID);
 
     void deliverOrder(int orderDetailID, int staffID);
+
+    OrderDetail getOrderDetail(Integer orderDetailId);
 }
